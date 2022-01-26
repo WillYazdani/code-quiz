@@ -1,6 +1,7 @@
 var timeEl = document.getElementById("timer")
 var timeRemainder = 75;
 var i = 0;
+var score = 0;
 
 //btn
 var btnEl = document.querySelector("#start-btn");
@@ -51,6 +52,8 @@ var questions = [
     }
 ];
 
+
+//next question on click
 var nextQuestion = function() {
     i++;
     if (i < questions.length) {
@@ -59,8 +62,66 @@ var nextQuestion = function() {
         document.getElementById("btn2").innerText = questions[i].choice[1]
         document.getElementById("btn3").innerText = questions[i].choice[2]
         document.getElementById("btn4").innerText = questions[i].choice[3]
+
+        switch (questions[i].correct) {
+
+            case 0:
+                document.getElementById("btn1").removeEventListener("click", incorrect);
+                document.getElementById("btn1").addEventListener("click", correct);
+                break;
+        
+            case 1:
+                document.getElementById("btn2").removeEventListener("click", incorrect);
+                document.getElementById("btn2").addEventListener("click", correct);
+                break;
+            
+            case 2:
+                document.getElementById("btn3").removeEventListener("click", incorrect);
+                document.getElementById("btn3").addEventListener("click", correct);
+                break;
+        
+            case 3:
+                document.getElementById("btn4").removeEventListener("click", incorrect);
+                document.getElementById("btn4").addEventListener("click", correct);
+                break;
+        }
+
+        if (questions[i].correct !==0) {
+            document.getElementById("btn1").removeEventListener("click", correct);
+            document.getElementById("btn1").addEventListener("click", incorrect);
+        }
+        if (questions[i].correct !==1) {
+            document.getElementById("btn2").removeEventListener("click", correct);
+            document.getElementById("btn2").addEventListener("click", incorrect);
+        }
+        if (questions[i].correct !==2) {
+            document.getElementById("btn3").removeEventListener("click", correct);
+            document.getElementById("btn3").addEventListener("click", incorrect);
+        }
+        if (questions[i].correct !==3) {
+            document.getElementById("btn4").removeEventListener("click", correct);
+            document.getElementById("btn4").addEventListener("click", incorrect);
+        }
+
     }
-}
+    else {
+        timeRemainder = 0
+    }
+};
+
+//correct answer
+var correct = function() {
+    document.getElementById("answer").innerText = "Correct!"
+    score++
+    nextQuestion()
+};
+
+//incorrect answer
+var incorrect = function() {
+    document.getElementById("answer").innerText = "Incorrect."
+    timeRemainder = timeRemainder - 10;
+    nextQuestion()
+};
 
 //game function
 var gameStart = function() {
@@ -102,4 +163,36 @@ var gameStart = function() {
     btn3.textContent = questions[i].choice[3];
     btn2.id = "btn4"
     btn3.className = "btn";
+
+    //event listener for correct answers
+    switch (questions[i].correct) {
+        case 0:
+            btn0.addEventListener("click", correct);
+            break;
+        case 1:
+            btn1.addEventListener("click", correct);
+            break;
+        case 2:
+            btn2.addEventListener("click", correct);
+            break;
+        case 3:
+            btn3.addEventListener("click", correct);
+            break;
+    }
+
+    if (questions[i].correct !== 0) {
+        btn0.addEventListener("click", incorrect)
+    }
+
+    if (questions[i].correct !== 1) {
+        btn0.addEventListener("click", incorrect)
+    }
+
+    if (questions[i].correct !== 2) {
+        btn0.addEventListener("click", incorrect)
+    }
+
+    if (questions[i].correct !== 3) {
+        btn0.addEventListener("click", incorrect)
+    }
 };
