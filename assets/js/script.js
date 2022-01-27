@@ -1,7 +1,6 @@
 var timeEl = document.getElementById("timer")
 var timeRemainder = 75;
 var i = 0;
-var score = 0;
 
 //btn
 var btnEl = document.querySelector("#start-btn");
@@ -27,7 +26,7 @@ var timer = function() {
 var questions = [
     {
         questionText: "first question",
-        choice: ["1","2","3","4"],
+        choice: ["1. one","2. two","3. three","4. four"],
         correct: 0
     },
     {
@@ -55,58 +54,7 @@ var questions = [
 
 //next question on click
 var nextQuestion = function() {
-    i++;
-    if (i < questions.length) {
-        document.getElementById("question").innerText = questions[i].questionText
-        document.getElementById("btn1").innerText = questions[i].choice[0]
-        document.getElementById("btn2").innerText = questions[i].choice[1]
-        document.getElementById("btn3").innerText = questions[i].choice[2]
-        document.getElementById("btn4").innerText = questions[i].choice[3]
 
-        switch (questions[i].correct) {
-
-            case 0:
-                document.getElementById("btn1").removeEventListener("click", incorrect);
-                document.getElementById("btn1").addEventListener("click", correct);
-                break;
-        
-            case 1:
-                document.getElementById("btn2").removeEventListener("click", incorrect);
-                document.getElementById("btn2").addEventListener("click", correct);
-                break;
-            
-            case 2:
-                document.getElementById("btn3").removeEventListener("click", incorrect);
-                document.getElementById("btn3").addEventListener("click", correct);
-                break;
-        
-            case 3:
-                document.getElementById("btn4").removeEventListener("click", incorrect);
-                document.getElementById("btn4").addEventListener("click", correct);
-                break;
-        }
-
-        if (questions[i].correct !==0) {
-            document.getElementById("btn1").removeEventListener("click", correct);
-            document.getElementById("btn1").addEventListener("click", incorrect);
-        }
-        if (questions[i].correct !==1) {
-            document.getElementById("btn2").removeEventListener("click", correct);
-            document.getElementById("btn2").addEventListener("click", incorrect);
-        }
-        if (questions[i].correct !==2) {
-            document.getElementById("btn3").removeEventListener("click", correct);
-            document.getElementById("btn3").addEventListener("click", incorrect);
-        }
-        if (questions[i].correct !==3) {
-            document.getElementById("btn4").removeEventListener("click", correct);
-            document.getElementById("btn4").addEventListener("click", incorrect);
-        }
-
-    }
-    else {
-        timeRemainder = 0
-    }
 };
 
 //correct answer
@@ -126,73 +74,4 @@ var incorrect = function() {
 //game function
 var gameStart = function() {
 
-    //remove welcome & btn
-    document.getElementById("start-btn").remove()
-    document.getElementById("welcome").remove()
-
-    //question
-    document.getElementById("question").innerText = questions[i].questionText
-
-    //answer btns
-    document.getElementById("choice").appendChild
-
-    //answer 1
-    var btn0 = document.createElement("button");
-    document.getElementById("choice").appendChild(btn0);
-    btn0.textContent = questions[i].choice[0];
-    btn0.id = "btn1"
-    btn0.className = "btn";
-
-    //answer 2
-    var btn1 = document.createElement("button");
-    document.getElementById("choice").appendChild(btn1);
-    btn1.textContent = questions[i].choice[1];
-    btn1.id = "btn2"
-    btn1.className = "btn";
-
-    //answer 3
-    var btn2 = document.createElement("button");
-    document.getElementById("choice").appendChild(btn2);
-    btn2.textContent = questions[i].choice[2];
-    btn2.id = "btn3"
-    btn2.className = "btn";
-
-    //answer 4
-    var btn3 = document.createElement("button");
-    document.getElementById("choice").appendChild(btn3);
-    btn3.textContent = questions[i].choice[3];
-    btn2.id = "btn4"
-    btn3.className = "btn";
-
-    //event listener for correct answers
-    switch (questions[i].correct) {
-        case 0:
-            btn0.addEventListener("click", correct);
-            break;
-        case 1:
-            btn1.addEventListener("click", correct);
-            break;
-        case 2:
-            btn2.addEventListener("click", correct);
-            break;
-        case 3:
-            btn3.addEventListener("click", correct);
-            break;
-    }
-
-    if (questions[i].correct !== 0) {
-        btn0.addEventListener("click", incorrect)
-    }
-
-    if (questions[i].correct !== 1) {
-        btn0.addEventListener("click", incorrect)
-    }
-
-    if (questions[i].correct !== 2) {
-        btn0.addEventListener("click", incorrect)
-    }
-
-    if (questions[i].correct !== 3) {
-        btn0.addEventListener("click", incorrect)
-    }
 };
