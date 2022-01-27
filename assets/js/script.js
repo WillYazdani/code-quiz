@@ -55,6 +55,7 @@ var questions = [
 //next question on click
 var nextQuestion = function() {
 
+    document.getElementById("")
 };
 
 //correct answer
@@ -73,5 +74,37 @@ var incorrect = function() {
 
 //game function
 var gameStart = function() {
+
+    document.getElementById("question").innerText = questions[i].questionText
+
+    document.getElementById("choice").appendChild
+    var btn1 = document.createElement("button");
+    var btn2 = document.createElement("button");
+    var btn3 = document.createElement("button");
+    var btn4 = document.createElement("button");
+
+    btn1.textContent = questions[i].choice[0];
+    btn2.textContent = questions[i].choice[1];
+    btn3.textContent = questions[i].choice[2];
+    btn4.textContent = questions[i].choice[3];
+
+    btn1.className = "btn";
+    btn2.className = "btn";
+    btn3.className = "btn";
+    btn4.className = "btn";
+
+    btn1.id = "btn1";
+    btn2.id = "btn2";
+    btn3.id = "btn3";
+    btn4.id = "btn4";
+
+    document.getElementById("choice").appendChild(btn1);
+    document.getElementById("choice").appendChild(btn2);
+    document.getElementById("choice").appendChild(btn3);
+    document.getElementById("choice").appendChild(btn4);
+
+    document.getElementById("welcome").remove()
+    document.getElementById("start-btn").remove()
+
 
 };
